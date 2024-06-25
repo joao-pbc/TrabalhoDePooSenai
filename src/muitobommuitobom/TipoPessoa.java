@@ -2,7 +2,8 @@ package muitobommuitobom;
 
 public enum TipoPessoa {
 
-    PESSOA
+    PESSOA_FISICA,
+    PESSOA_JURIDICA
 
 
 }
