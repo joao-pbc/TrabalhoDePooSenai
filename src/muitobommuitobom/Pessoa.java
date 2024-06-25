@@ -1,5 +1,10 @@
 package muitobommuitobom;
 
+import java.util.regex.Pattern;
+
+import static muitobommuitobom.TipoPessoa.PESSOA_FISICA;
+import static muitobommuitobom.TipoPessoa.PESSOA_JURIDICA;
+
 public abstract class Pessoa {
 
     private int ID;
@@ -24,7 +29,6 @@ public abstract class Pessoa {
 
     private String Telefone;
 
-
     public Pessoa(String nome, muitobommuitobom.TipoPessoa tipoPessoa, String documento, String endereco, String complementoEndereco, String bairro, String CEP, String cidade, muitobommuitobom.Estado estado, String telefone) {
 
         if(nome.length()>=5 && endereco.length()>=5 && bairro.length()>=5){
@@ -33,6 +37,11 @@ public abstract class Pessoa {
         if(cidade.length()>=3){
             throw new IllegalArgumentException("Campo possui menos que três caracteres");
         }
+        if(!documentoValido(documento, tipoPessoa))
+            throw new IllegalArgumentException("Documentos inválidos");
+        if(validarTelefone(telefone))
+            throw new IllegalArgumentException("Telefone Inválido");
+
 
         this.ID = ID + 1;
         Nome = nome;
@@ -50,7 +59,6 @@ public abstract class Pessoa {
     public int getID() {
         return ID;
     }
-
 
     public String getNome() {
         return Nome;
@@ -132,11 +140,50 @@ public abstract class Pessoa {
         Telefone = telefone;
     }
 
-    public boolean DocumentoValido(){
-        return false;
+    public boolean documentoValido(String documento, TipoPessoa tipo){
+        switch (tipo) {
+            case PESSOA_FISICA:
+                return validarCPF(documento);
+            case PESSOA_JURIDICA:
+                return validarCNPJ(documento);
+            default:
+                throw new IllegalArgumentException("Tipo de pessoa inválido");
+        }
     }
 
+    private boolean validarCPF(String cpf) {
+        return cpf.matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}");
+    }
 
+    private boolean validarCNPJ(String cnpj) {
+        return cnpj.matches("\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}");
+    }
 
+    public boolean validarTelefone(String telefone) {
+        if (telefone == null || telefone.isEmpty()) {
+            return false;
+        }
+
+        telefone = telefone.replaceAll("[^0-9]", "");
+
+        char primeiroDigito = telefone.charAt(0);
+        if (primeiroDigito == '2' || primeiroDigito == '3' || primeiroDigito == '4' || primeiroDigito == '5') {
+            return validarTelefoneFixo(telefone);
+        } else if (primeiroDigito == '6' || primeiroDigito == '7' || primeiroDigito == '8' || primeiroDigito == '9') {
+            return validarTelefoneMovel(telefone);
+        } else {
+            return false;
+        }
+    }
+
+    private boolean validarTelefoneFixo(String telefone) {
+        String regex = "[2-5]{1}[0-9]{3}-[0-9]{4}";
+        return Pattern.matches(regex, telefone);
+    }
+
+    private boolean validarTelefoneMovel(String telefone) {
+        String regex = "[6-9]{1}[0-9]{4}-[0-9]{4}";
+        return Pattern.matches(regex, telefone);
+    }
 
 }
