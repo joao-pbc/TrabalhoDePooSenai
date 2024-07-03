@@ -1,41 +1,35 @@
 package muitobommuitobom;
 
+import java.time.LocalDate;
+
 public class Operario extends Empregado{
     double valorMinimoGatilho;
     double percentualComissao;
     double producaoMensal;
     boolean informouProducaoMensal;
 
-    public Operario(String nome, muitobommuitobom.TipoPessoa tipoPessoa, String documento, String endereco, String complementoEndereco, String bairro, String CEP, String cidade, muitobommuitobom.Estado estado, String telefone) {
-        super(nome, tipoPessoa, documento, endereco, complementoEndereco, bairro, CEP, cidade, estado, telefone);
-        this.informouProducaoMensal = false;
-        this.producaoMensal = 0;
-        this.percentualComissao = percentualComissao;
+    public Operario(String nome, muitobommuitobom.TipoPessoa tipoPessoa, String documento, String endereco, String complementoEndereco, String bairro, String CEP, String cidade, muitobommuitobom.Estado estado, String telefone, int codigoSetor, double salarioBruto, LocalDate dataAdmissao, LocalDate dataDesligamento, double percentualImpostos, double valorMinimoGatilho, double percentualComissao, double producaoMensal, boolean informouProducaoMensal) {
+        super(nome, tipoPessoa, documento, endereco, complementoEndereco, bairro, CEP, cidade, estado, telefone, codigoSetor, salarioBruto, dataAdmissao, dataDesligamento, percentualImpostos);
         this.valorMinimoGatilho = valorMinimoGatilho;
-
-    }
-
-
-    public void InformarProduçãoMensal(double producaoMensal){
-        this.producaoMensal = producaoMensal;
-        this.informouProducaoMensal = true;
-
-    }
-
-    public void LimparProducaoMensal(){
+        this.percentualComissao = percentualComissao;
         this.producaoMensal = 0;
         this.informouProducaoMensal = false;
     }
 
-
+    public void limparProducaoMensal(){
+        this.producaoMensal = 0;
+        this.informouProducaoMensal = false;
+    }
 
     void informarProducaoMensal(double valor){
-
+        this.producaoMensal = valor;
+        this.informouProducaoMensal = true;
     }
-    void limparProducaoMensal(){
 
-    }
     public double calcularSalarioLiquido(){
-        return super.calcularSalarioLiquido();
+        if(!informouProducaoMensal){
+            throw new IllegalArgumentException("Producao mensal nao informada");
+        }
+        return super.calcularSalarioLiquido(salarioBruto, percentualImpostos) + (producaoMensal * percentualComissao);
     }
 }
