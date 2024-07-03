@@ -12,7 +12,7 @@ public abstract class Empregado extends Pessoa{
     double salarioLiquidoCalculado;
     LocalDateTime dataCalculoSalario;
 
-    public Empregado(String nome, muitobommuitobom.TipoPessoa tipoPessoa, String documento, String endereco, String complementoEndereco, String bairro, String CEP, String cidade, muitobommuitobom.Estado estado, String telefone) {
+    public Empregado(String nome, muitobommuitobom.TipoPessoa tipoPessoa, String documento, String endereco, String complementoEndereco, String bairro, String CEP, String cidade, muitobommuitobom.Estado estado, String telefone, int codigoSetor, double salarioBruto, LocalDate dataAdmissao, LocalDate dataDesligamento, double percentualImpostos) {
         super(nome, tipoPessoa, documento, endereco, complementoEndereco, bairro, CEP, cidade, estado, telefone);
         if(codigoSetor<0){
             throw new IllegalArgumentException("O valor deve ser acima de zero");
@@ -27,11 +27,16 @@ public abstract class Empregado extends Pessoa{
         if(dataDesligamento.isBefore(dataAtual) || dataDesligamento.isAfter(dataAdmissao)){
             throw new IllegalArgumentException("Data invalida.");
         }
-
+        this.dataAdmissao = dataAdmissao;
+        this.dataDesligamento = dataDesligamento;
+        this.codigoSetor = codigoSetor;
+        this.salarioBruto = salarioBruto;
+        this.percentualImpostos = percentualImpostos;
+        this.salarioLiquidoCalculado = calcularSalarioLiquido(salarioBruto, percentualImpostos);
     }
 
     public double calcularSalarioLiquido(double salarioBruto, double percentualImpostos){
-        double valor = salarioBruto-percentualImpostos
-        return valor;
+        this.dataCalculoSalario = LocalDateTime.now();
+        return salarioBruto-(salarioBruto * percentualImpostos);
     }
 }

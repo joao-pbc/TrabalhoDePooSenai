@@ -1,31 +1,42 @@
 package muitobommuitobom;
 
-public class Vendedor extends Empregado{
-    double valorMinimoBonus;
-    double percentualPremiacao;
-    private double vendasMes;
-    private double vendasUltimoMes;
-    private double vendasPenultimoMes;
-    private boolean informouVendasMes;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-    public Vendedor(String nome, muitobommuitobom.TipoPessoa tipoPessoa, String documento, String endereco, String complementoEndereco, String bairro, String CEP, String cidade, muitobommuitobom.Estado estado, String telefone, double valorMinimoBonus, double percentualPremiacao) {
+public abstract class Empregado extends Pessoa{
+    int codigoSetor;
+    LocalDate dataAdmissao;
+    LocalDate dataDesligamento;
+    double salarioBruto;
+    double percentualImpostos;
+    double salarioLiquidoCalculado;
+    LocalDateTime dataCalculoSalario;
+
+    public Empregado(String nome, muitobommuitobom.TipoPessoa tipoPessoa, String documento, String endereco, String complementoEndereco, String bairro, String CEP, String cidade, muitobommuitobom.Estado estado, String telefone, int codigoSetor, double salarioBruto, LocalDate dataAdmissao, LocalDate dataDesligamento, double percentualImpostos) {
         super(nome, tipoPessoa, documento, endereco, complementoEndereco, bairro, CEP, cidade, estado, telefone);
-        this.informouVendasMes = false;
-        this.vendasMes = 0;
-        this.vendasPenultimoMes = 0;
-        this.vendasUltimoMes = 0;
-        this.valorMinimoBonus = valorMinimoBonus;
-        this.percentualPremiacao = percentualPremiacao;
+        if(codigoSetor<0){
+            throw new IllegalArgumentException("O valor deve ser acima de zero");
+        }
+        if (salarioBruto > 0 && Math.floor(salarioBruto * 100) == salarioBruto * 100) {
+            throw new IllegalArgumentException("O valor não está dentro dos paramentros");
+        }
+        LocalDate dataAtual = LocalDate.now();
+        if (dataAdmissao.isBefore(dataAtual)){
+            throw new IllegalArgumentException("Data invalida.");
+        }
+        if(dataDesligamento.isBefore(dataAtual) || dataDesligamento.isAfter(dataAdmissao)){
+            throw new IllegalArgumentException("Data invalida.");
+        }
+        this.dataAdmissao = dataAdmissao;
+        this.dataDesligamento = dataDesligamento;
+        this.codigoSetor = codigoSetor;
+        this.salarioBruto = salarioBruto;
+        this.percentualImpostos = percentualImpostos;
+        this.salarioLiquidoCalculado = calcularSalarioLiquido(salarioBruto, percentualImpostos);
     }
 
-    void informarVendasDoMes(double valor){
-
-    }
-    void reverterInformacaoVendasDoMes(){
-
-    }
-    @Override
-    public double calcularSalarioLiquido() {
-        return super.calcularSalarioLiquido();
+    public double calcularSalarioLiquido(double salarioBruto, double percentualImpostos){
+        this.dataCalculoSalario = LocalDateTime.now();
+        return salarioBruto-(salarioBruto * percentualImpostos);
     }
 }
