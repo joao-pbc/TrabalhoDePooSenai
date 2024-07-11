@@ -7,6 +7,10 @@ import static muitobommuitobom.TipoPessoa.PESSOA_JURIDICA;
 
 public abstract class Pessoa {
 
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
     private int ID;
 
     private String Nome;
@@ -28,6 +32,9 @@ public abstract class Pessoa {
     private muitobommuitobom.Estado Estado;
 
     private String Telefone;
+
+    public Pessoa(){
+    }
 
     public Pessoa(String nome, muitobommuitobom.TipoPessoa tipoPessoa, String documento, String endereco, String complementoEndereco, String bairro, String CEP, String cidade, muitobommuitobom.Estado estado, String telefone) {
 

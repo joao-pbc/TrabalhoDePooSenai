@@ -8,6 +8,22 @@ public class Vendedor extends Empregado {
 
     private double percentualPremiacao;
 
+    public double getVendasMes() {
+        return vendasMes;
+    }
+
+    public double getVendasUltimoMes() {
+        return vendasUltimoMes;
+    }
+
+    public double getVendasPenultimoMes() {
+        return vendasPenultimoMes;
+    }
+
+    public boolean isInformouVendasMes() {
+        return informouVendasMes;
+    }
+
     private double vendasMes;
 
     private double vendasUltimoMes;
@@ -19,16 +35,16 @@ public class Vendedor extends Empregado {
     public Vendedor(String nome, muitobommuitobom.TipoPessoa tipoPessoa, String documento, String endereco, String complementoEndereco, String bairro, String CEP, String cidade, muitobommuitobom.Estado estado, String telefone, int codigoSetor, double salarioBruto, LocalDate dataAdmissao, LocalDate dataDesligamento, double percentualImpostos){
         super(nome, tipoPessoa, documento, endereco, complementoEndereco, bairro, CEP, cidade, estado, telefone, codigoSetor, salarioBruto, dataAdmissao, dataDesligamento, percentualImpostos);
 
-        if (valorMinimoBonus > 0 && Math.floor(valorMinimoBonus * 100) == valorMinimoBonus * 100) {
+        if (valorMinimoBonus < 0 || Math.floor(valorMinimoBonus * 100) == valorMinimoBonus * 100) {
             throw new IllegalArgumentException("O valor não está dentro dos paramentros");
         }
-        if (percentualPremiacao > 0 && Math.floor(percentualPremiacao * 100) == percentualPremiacao * 100) {
+        if (percentualPremiacao < 0 || Math.floor(percentualPremiacao * 100) == percentualPremiacao * 100) {
             throw new IllegalArgumentException("O valor não está dentro dos paramentros");
         }
-        if (vendasMes > 0 && Math.floor(vendasMes * 100) == vendasMes * 100) {
+        if (vendasMes < 0 || Math.floor(vendasMes * 100) == vendasMes * 100) {
             throw new IllegalArgumentException("O valor não está dentro dos paramentros");
         }
-        if (vendasPenultimoMes > 0 && Math.floor(vendasPenultimoMes * 100) == vendasPenultimoMes * 100) {
+        if (vendasPenultimoMes < 0 || Math.floor(vendasPenultimoMes * 100) == vendasPenultimoMes * 100) {
             throw new IllegalArgumentException("O valor não está dentro dos paramentros");
         }
         if (salarioBruto > 0 && Math.floor(salarioBruto * 100) == salarioBruto * 100) {
