@@ -24,6 +24,22 @@ public class Vendedor extends Empregado {
         return informouVendasMes;
     }
 
+    public void setVendasMes(double vendasMes) {
+        this.vendasMes = vendasMes;
+    }
+
+    public void setVendasUltimoMes(double vendasUltimoMes) {
+        this.vendasUltimoMes = vendasUltimoMes;
+    }
+
+    public void setVendasPenultimoMes(double vendasPenultimoMes) {
+        this.vendasPenultimoMes = vendasPenultimoMes;
+    }
+
+    public void setInformouVendasMes(boolean informouVendasMes) {
+        this.informouVendasMes = informouVendasMes;
+    }
+
     private double vendasMes;
 
     private double vendasUltimoMes;
@@ -31,6 +47,8 @@ public class Vendedor extends Empregado {
     private double vendasPenultimoMes;
 
     private boolean informouVendasMes;
+
+    public Vendedor(){}
 
     public Vendedor(String nome, muitobommuitobom.TipoPessoa tipoPessoa, String documento, String endereco, String complementoEndereco, String bairro, String CEP, String cidade, muitobommuitobom.Estado estado, String telefone, int codigoSetor, double salarioBruto, LocalDate dataAdmissao, LocalDate dataDesligamento, double percentualImpostos){
         super(nome, tipoPessoa, documento, endereco, complementoEndereco, bairro, CEP, cidade, estado, telefone, codigoSetor, salarioBruto, dataAdmissao, dataDesligamento, percentualImpostos);
