@@ -94,7 +94,6 @@ public class App
         System.out.print("Digite o CNPJ: ");
          christian.setDocumento(scanner.nextLine());
 
-
         System.out.print("Digite o endereço: ");
          christian.setEndereco(scanner.nextLine());
 
