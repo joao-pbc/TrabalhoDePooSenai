@@ -37,6 +37,11 @@ public abstract class Pessoa {
         setTelefone(DDD,telefone);
 
     }
+
+	Pessoa() {
+
+	}
+
 	public int getID() {
 		return id;
 	}

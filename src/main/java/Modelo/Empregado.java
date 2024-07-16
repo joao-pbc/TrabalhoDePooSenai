@@ -42,7 +42,11 @@ public abstract class Empregado extends Pessoa{
         this.salarioLiquidoCalculado = calcularSalarioLiquido(salarioBruto, percentualImpostos);
     }
 
-    public int getCodigoSetor() {
+	Empregado() {
+		super();
+	}
+
+	public int getCodigoSetor() {
 		return this.codigoSetor;
 	}
 

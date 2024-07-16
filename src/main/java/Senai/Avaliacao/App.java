@@ -81,72 +81,67 @@ public class App
 
         VendedorDAO insereV = new VendedorDAO();
 
+        Vendedor  christian = new Vendedor();
+
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("Digite o nome: ");
-        String nome = scanner.nextLine();
+         christian.setNome(scanner.nextLine());
 
         System.out.print("Digite o tipo de pessoa (PessoaFisica/PessoaJuridica): ");
-        TpPessoa tipoPessoa = TpPessoa.valueOf(scanner.nextLine());
+         christian.setTipoPessoa(TpPessoa.valueOf(scanner.nextLine()));
 
         System.out.print("Digite o CNPJ: ");
-        String documento = scanner.nextLine();
+         christian.setDocumento(scanner.nextLine());
 
 
         System.out.print("Digite o endereço: ");
-        String endereco = scanner.nextLine();
+         christian.setEndereco(scanner.nextLine());
 
         System.out.print("Digite o complemento do endereço: ");
-        String complementoEndereco = scanner.nextLine();
+        christian.setComplementoEndereco(scanner.nextLine());
 
         System.out.print("Digite o bairro: ");
-        String bairro = scanner.nextLine();
+        christian.setBairro(scanner.nextLine());
 
         System.out.print("Digite o CEP: ");
-        String CEP = scanner.nextLine();
+        christian.setCEP(scanner.nextLine());
 
         System.out.print("Digite a cidade: ");
-        String cidade = scanner.nextLine();
+        christian.setCidade(scanner.nextLine());
 
         System.out.print("Digite o estado (sigla): ");
-        Estado estado = Estado.valueOf(scanner.nextLine());
+        christian.setEstado(Estado.valueOf(scanner.nextLine()));
 
         System.out.print("Digite o telefone: ");
         String telefone = scanner.nextLine();
 
-
         System.out.print("Digite o DDD: (00)");
-        String DDD = scanner.nextLine();
+        String ddd = scanner.nextLine();
+        christian.setTelefone(ddd, telefone);
 
-        System.out.print("Digite a comissão: ");
-        double comissao = scanner.nextDouble();
+//        System.out.print("Digite a comissão: ");
+//         christian = scanner.nextDouble();
 
-        System.out.print("Digite a data de contratação (yyyy-MM-ddT00:00:00.000): ");
-        LocalDate dataAdmissao = LocalDate.now();
-
-        System.out.print("Digite a data de desligamento (yyyy-MM-ddT00:00:00.000): ");
-        LocalDate dataDesligamento = LocalDate.now();
+         christian.setDataAdmissao(LocalDate.now());
+        christian.setDataDesligamento(LocalDate.now());
 
         System.out.print("Digite o salário: ");
-        double salarioBruto = scanner.nextDouble();
+        christian.setSalarioBruto(scanner.nextDouble());
 
         System.out.print("Digite o codigo do Setor: ");
-        int codigoSetor = scanner.nextInt();
+         christian.setCodigoSetor(scanner.nextInt());
 
         System.out.print("Digite o percentual de imposto: ");
-        double percentualImpostos = scanner.nextDouble();
+        christian.setPercentualImpostos(scanner.nextDouble());
 
         System.out.print("Digite o percentual de imposto: ");
-        double valorMinimoBonus = scanner.nextDouble();
+        christian.setPercentualPremiacao(scanner.nextDouble());
 
         System.out.print("Digite o percentual de imposto: ");
-        double percentualPremiacao = scanner.nextDouble();
+        christian.setValorMinimoBonus(scanner.nextDouble());
 
-
-        Vendedor  christian = new Vendedor(nome, tipoPessoa, documento, endereco, complementoEndereco, bairro, CEP, cidade, estado,DDD, telefone, codigoSetor, salarioBruto, dataAdmissao, dataDesligamento, percentualImpostos,valorMinimoBonus,percentualPremiacao);
-
-
-       /*Vendedor christian = new Vendedor("Christian",TpPessoa.PessoaJuridica,"22.209.954/0001-41","MynhaCasa", "Rui Barbosa", "Progresso", "89026600", "Blumenau", Estado.SC, "47", "988264845",12,1.234, LocalDate.now(),LocalDate.now(),8.00,2.00,1.234);
+        /*Vendedor christian = new Vendedor("Christian",TpPessoa.PessoaJuridica,"22.209.954/0001-41","MynhaCasa", "Rui Barbosa", "Progresso", "89026600", "Blumenau", Estado.SC, "47", "988264845",12,1.234, LocalDate.now(),LocalDate.now(),8.00,2.00,1.234);
 
         */
        insereV.cadastrarVendedor(christian);

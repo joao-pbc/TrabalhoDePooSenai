@@ -42,7 +42,11 @@ public class Vendedor extends Empregado {
         this.vendasUltimoMes = 0;
         this.vendasPenultimoMes = 0;
     }
-    
+
+    public Vendedor() {
+        super();
+    }
+
     public double getVendasMes() {
         return vendasMes;
     }
