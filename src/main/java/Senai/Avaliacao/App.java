@@ -92,7 +92,6 @@ public class App
         System.out.print("Digite o CNPJ: ");
         String documento = scanner.nextLine();
 
-
         System.out.print("Digite o endereço: ");
         String endereco = scanner.nextLine();
 

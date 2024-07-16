@@ -10,11 +10,11 @@ public class OperarioDAO {
 
 	public void cadastrarOperario(Operario operario) {
 		String sql = "INSERT INTO Operarios " +
-                "(ID, Nome, TipoDePessoa, Documento, Endereco, ComplementoEndereco, " +
+                "(Nome, TipoDePessoa, Documento, Endereco, ComplementoEndereco, " +
                 "Bairro, CEP, Cidade, Estado, Telefone, CodigoSetor, DataAdmissao, " +
                 "DataDesligamento, SalarioBruto, PercentualImpostos, SalarioLiquidoCalculado, " +
                 "DataCalculoSalario, ValorMinimoGatilho, PercentualComissao, ProducaoMensal, InformouProducaoMensal) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement ps = null;
 		Connection conn = null;
@@ -23,28 +23,27 @@ public class OperarioDAO {
 			conn = Conexao.getConexao();
 
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1,operario.getID());
-            ps.setString(2, operario.getNome());
-            ps.setString(3, operario.getTipoPessoa().name());
-            ps.setString(4, operario.getDocumento());
-            ps.setString(5, operario.getEndereco());
-            ps.setString(6, operario.getComplementoEndereco());
-            ps.setString(7, operario.getBairro());
-            ps.setString(8, operario.getCEP());
-            ps.setString(9, operario.getCidade());
-            ps.setString(10, operario.getEstado().name());
-            ps.setString(11, operario.getTelefone());
-            ps.setInt(12, operario.getCodigoSetor());
-            ps.setObject(13, operario.getDataAdmissao());
-            ps.setObject(14, operario.getDataDesligamento());
-            ps.setDouble(15, operario.getSalarioBruto());
-            ps.setDouble(16, operario.getPercentualImpostos());
-            ps.setDouble(17, operario.getSalarioLiquidoCalculado());
-            ps.setObject(18, operario.getDataCalculoSalario());
-			ps.setDouble(19, operario.getValorMinimoGatilho());
-			ps.setDouble(20, operario.getPercentualComissao());
-			ps.setDouble(21, operario.getProducaoMensal());
-			ps.setBoolean(22, operario.isInformouProducaoMensal());
+            ps.setString(1, operario.getNome());
+            ps.setString(2, operario.getTipoPessoa().name());
+            ps.setString(3, operario.getDocumento());
+            ps.setString(4, operario.getEndereco());
+            ps.setString(5, operario.getComplementoEndereco());
+            ps.setString(6, operario.getBairro());
+            ps.setString(7, operario.getCEP());
+            ps.setString(8, operario.getCidade());
+            ps.setString(9, operario.getEstado().name());
+            ps.setString(10, operario.getTelefone());
+            ps.setInt(11, operario.getCodigoSetor());
+            ps.setObject(12, operario.getDataAdmissao());
+            ps.setObject(13, operario.getDataDesligamento());
+            ps.setDouble(14, operario.getSalarioBruto());
+            ps.setDouble(15, operario.getPercentualImpostos());
+            ps.setDouble(16, operario.getSalarioLiquidoCalculado());
+            ps.setObject(17, operario.getDataCalculoSalario());
+			ps.setDouble(18, operario.getValorMinimoGatilho());
+			ps.setDouble(19, operario.getPercentualComissao());
+			ps.setDouble(20, operario.getProducaoMensal());
+			ps.setBoolean(21, operario.isInformouProducaoMensal());
 
 			ps.execute();
 		} catch (SQLException e) {
