@@ -15,7 +15,7 @@ public class AdministradorDAO {
                 "Bairro, CEP, Cidade, Estado, Telefone, CodigoSetor, DataAdmissao, " +
                 "DataDesligamento, SalarioBruto, PercentualImpostos, SalarioLiquidoCalculado, " +
                 "DataCalculoSalario, AjudaCusto) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		PreparedStatement ps = null;
    		Connection conn = null;

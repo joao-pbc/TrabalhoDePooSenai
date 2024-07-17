@@ -53,10 +53,10 @@ public class App
             if (menuAPP == 1) {
                 while (true) {
                     System.out.println(
-                            "Menu/Criar_Usuário" +
-                                    "1 - Vendedor" +
-                                    "2 - Operario" +
-                                    "3 - Administrativo" +
+                            "Menu/Criar_Usuário\n" +
+                                    "1 - Vendedor\n" +
+                                    "2 - Operario\n" +
+                                    "3 - Administrativo\n" +
                                     "0 - Sair"
                     );
                     menuAPP = scanner.nextInt();
@@ -98,8 +98,13 @@ public class App
         System.out.print("Digite o tipo de pessoa (PessoaFisica/PessoaJuridica): ");
          christian.setTipoPessoa(TpPessoa.valueOf(scanner.nextLine()));
 
-        System.out.print("Digite o CNPJ: ");
-         christian.setDocumento(scanner.nextLine());
+         if(christian.getTipoPessoa()==TpPessoa.PessoaFisica){
+             System.out.print("Digite o CPF: (000.000.000-00)");
+             christian.setDocumento(scanner.nextLine());
+         } else if (christian.getTipoPessoa()==TpPessoa.PessoaJuridica) {
+             System.out.print("Digite o CNPJ:(00.000.000/0000-00) ");
+             christian.setDocumento(scanner.nextLine());
+         }
 
         System.out.print("Digite o endereço: ");
          christian.setEndereco(scanner.nextLine());
@@ -162,8 +167,13 @@ public class App
         System.out.print("Digite o tipo de pessoa (PessoaFisica/PessoaJuridica): ");
         christian.setTipoPessoa(TpPessoa.valueOf(scanner.nextLine()));
 
-        System.out.print("Digite o CNPJ: ");
-        christian.setDocumento(scanner.nextLine());
+        if(christian.getTipoPessoa()==TpPessoa.PessoaFisica){
+            System.out.print("Digite o CPF: (000.000.000-00)");
+            christian.setDocumento(scanner.nextLine());
+        } else if (christian.getTipoPessoa()==TpPessoa.PessoaJuridica) {
+            System.out.print("Digite o CNPJ:(00.000.000/0000-00) ");
+            christian.setDocumento(scanner.nextLine());
+        }
 
         System.out.print("Digite o endereço: ");
         christian.setEndereco(scanner.nextLine());
@@ -230,8 +240,13 @@ public class App
         System.out.print("Digite o tipo de pessoa (PessoaFisica/PessoaJuridica): ");
         christian.setTipoPessoa(TpPessoa.valueOf(scanner.nextLine()));
 
-        System.out.print("Digite o CNPJ: ");
-        christian.setDocumento(scanner.nextLine());
+        if(christian.getTipoPessoa()==TpPessoa.PessoaFisica){
+            System.out.print("Digite o CPF: (000.000.000-00)");
+            christian.setDocumento(scanner.nextLine());
+        } else if (christian.getTipoPessoa()==TpPessoa.PessoaJuridica) {
+            System.out.print("Digite o CNPJ:(00.000.000/0000-00) ");
+            christian.setDocumento(scanner.nextLine());
+        }
 
         System.out.print("Digite o endereço: ");
         christian.setEndereco(scanner.nextLine());
