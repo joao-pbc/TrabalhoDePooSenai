@@ -143,6 +143,7 @@ public class App
 
         System.out.print("Digite o percentual de imposto: ");
         christian.setValorMinimoBonus(scanner.nextDouble());
+        christian.calcularSalarioLiquido(christian.getSalarioBruto(), christian.getPercentualImpostos());
 
        insereV.cadastrarVendedor(christian);
 
@@ -210,6 +211,8 @@ public class App
         System.out.print("Digite o percentual de imposto: ");
         christian.setValorMinimoGatilho(scanner.nextDouble());
 
+        christian.calcularSalarioLiquido(christian.getSalarioBruto(), christian.getPercentualImpostos());
+
         insereV.cadastrarOperario(christian);
 
     }
@@ -272,6 +275,10 @@ public class App
 
         System.out.print("Digite o percentual de imposto: ");
         christian.setAjudaCusto(scanner.nextDouble());
+
+        christian.calcularSalarioLiquido(christian.getSalarioBruto(), christian.getPercentualImpostos());
+
+        insereV.cadastrarAdministrativo(christian);
 
     }
 
