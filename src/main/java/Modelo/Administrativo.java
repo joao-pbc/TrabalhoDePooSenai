@@ -8,6 +8,10 @@ public class Administrativo extends Empregado{
 
     double ajudaCusto;
 
+    public Administrativo() {
+
+    }
+
     public double getAjudaCusto() {
 		return this.ajudaCusto;
 	}

@@ -40,7 +40,7 @@ public class App
         Operario Bove = new Operario("J.Bove",TpPessoa.PessoaJuridica,"22.209.954/0001-41","CasaDele", "DoladoDoVizinhoDele","Progresso","89045500","Blumenau",Estado.SC,"47","988274845",12,1.234,LocalDate.now(),LocalDate.now(),2.00,8.00,1.234,2.123,true);
 
         insereO.cadastrarOperario(Bove);*/
-        while(menuAPP!=5) {
+        while(true) {
 
             System.out.println(
                     "Menu" +
@@ -67,6 +67,9 @@ public class App
                             break;
                         case 2:
                             CadastrarOperario();
+                            break;
+                        case 3:
+                            CadastrarAdministrador();
                             break;
                         case 0:
                             return;
@@ -208,6 +211,67 @@ public class App
         christian.setValorMinimoGatilho(scanner.nextDouble());
 
         insereV.cadastrarOperario(christian);
+
+    }
+
+    public static void CadastrarAdministrador(){
+
+        AdministradorDAO insereV = new AdministradorDAO();
+
+        Administrativo  christian = new Administrativo();
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Digite o nome: ");
+        christian.setNome(scanner.nextLine());
+
+        System.out.print("Digite o tipo de pessoa (PessoaFisica/PessoaJuridica): ");
+        christian.setTipoPessoa(TpPessoa.valueOf(scanner.nextLine()));
+
+        System.out.print("Digite o CNPJ: ");
+        christian.setDocumento(scanner.nextLine());
+
+        System.out.print("Digite o endereço: ");
+        christian.setEndereco(scanner.nextLine());
+
+        System.out.print("Digite o complemento do endereço: ");
+        christian.setComplementoEndereco(scanner.nextLine());
+
+        System.out.print("Digite o bairro: ");
+        christian.setBairro(scanner.nextLine());
+
+        System.out.print("Digite o CEP: ");
+        christian.setCEP(scanner.nextLine());
+
+        System.out.print("Digite a cidade: ");
+        christian.setCidade(scanner.nextLine());
+
+        System.out.print("Digite o estado (sigla): ");
+        christian.setEstado(Estado.valueOf(scanner.nextLine()));
+
+        System.out.print("Digite o DDD: (00)");
+        String ddd = scanner.nextLine();
+
+        System.out.print("Digite o telefone: ");
+        String telefone = scanner.nextLine();
+
+        christian.setTelefone(ddd, telefone);
+        christian.setDataAdmissao(LocalDate.now());
+        christian.setDataDesligamento(LocalDate.now());
+
+        System.out.print("Digite o salário: ");
+        christian.setSalarioBruto(scanner.nextDouble());
+
+        System.out.print("Digite o codigo do Setor: ");
+        christian.setCodigoSetor(scanner.nextInt());
+
+        System.out.print("Digite o percentual de imposto: ");
+        christian.setPercentualImpostos(scanner.nextDouble());
+
+        System.out.print("Digite o percentual de imposto: ");
+        christian.setPercentualImpostos(scanner.nextDouble());
+
+        System.out.print("Digite o percentual de imposto: ");
+        christian.setAjudaCusto(scanner.nextDouble());
 
     }
 
