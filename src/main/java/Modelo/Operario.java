@@ -8,6 +8,23 @@ public class Operario extends Empregado{
 	
 	double valorMinimoGatilho;
     double percentualComissao;
+
+    public void setValorMinimoGatilho(double valorMinimoGatilho) {
+        this.valorMinimoGatilho = valorMinimoGatilho;
+    }
+
+    public void setPercentualComissao(double percentualComissao) {
+        this.percentualComissao = percentualComissao;
+    }
+
+    public void setProducaoMensal(double producaoMensal) {
+        this.producaoMensal = producaoMensal;
+    }
+
+    public void setInformouProducaoMensal(boolean informouProducaoMensal) {
+        this.informouProducaoMensal = informouProducaoMensal;
+    }
+
     double producaoMensal;
     boolean informouProducaoMensal;
     
@@ -19,7 +36,11 @@ public class Operario extends Empregado{
         this.informouProducaoMensal = false;
     }
 
-	public double getValorMinimoGatilho() {
+    public Operario() {
+
+    }
+
+    public double getValorMinimoGatilho() {
         return valorMinimoGatilho;
     }
 

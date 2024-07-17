@@ -50,28 +50,32 @@ public class App
 
             menuAPP = scanner.nextInt();
 
-            switch (menuAPP){
-                case 1:
-                    while(menuAPP!=0){
-                        System.out.println(
-                                "Menu/Criar_Usuário"+
-                                        "1 - Vendedor"+
-                                        "2 - Operario"+
-                                        "3 - Administrativo"+
-                                        "0 - Sair"
-                        );
-                        menuAPP = scanner.nextInt();
+            if (menuAPP == 1) {
+                while (true) {
+                    System.out.println(
+                            "Menu/Criar_Usuário" +
+                                    "1 - Vendedor" +
+                                    "2 - Operario" +
+                                    "3 - Administrativo" +
+                                    "0 - Sair"
+                    );
+                    menuAPP = scanner.nextInt();
 
-                        switch (menuAPP){
-                            case 1:
-                                CadastrarVendedor();
+                    switch (menuAPP) {
+                        case 1:
+                            CadastrarVendedor();
+                            break;
+                        case 2:
+                            CadastrarOperario();
+                            break;
+                        case 0:
+                            return;
 
-                        }
                     }
-
-
-
-        }
+                }
+            } else if (menuAPP == 0){
+                return;
+            }
 
 
     }
@@ -112,17 +116,14 @@ public class App
         System.out.print("Digite o estado (sigla): ");
         christian.setEstado(Estado.valueOf(scanner.nextLine()));
 
+        System.out.print("Digite o DDD: (00)");
+        String ddd = scanner.nextLine();
+
         System.out.print("Digite o telefone: ");
         String telefone = scanner.nextLine();
 
-        System.out.print("Digite o DDD: (00)");
-        String ddd = scanner.nextLine();
         christian.setTelefone(ddd, telefone);
-
-//        System.out.print("Digite a comissão: ");
-//         christian = scanner.nextDouble();
-
-         christian.setDataAdmissao(LocalDate.now());
+        christian.setDataAdmissao(LocalDate.now());
         christian.setDataDesligamento(LocalDate.now());
 
         System.out.print("Digite o salário: ");
@@ -140,10 +141,73 @@ public class App
         System.out.print("Digite o percentual de imposto: ");
         christian.setValorMinimoBonus(scanner.nextDouble());
 
-        /*Vendedor christian = new Vendedor("Christian",TpPessoa.PessoaJuridica,"22.209.954/0001-41","MynhaCasa", "Rui Barbosa", "Progresso", "89026600", "Blumenau", Estado.SC, "47", "988264845",12,1.234, LocalDate.now(),LocalDate.now(),8.00,2.00,1.234);
-
-        */
        insereV.cadastrarVendedor(christian);
+
+    }
+
+    public static void CadastrarOperario(){
+
+        OperarioDAO insereV = new OperarioDAO();
+
+        Operario  christian = new Operario();
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Digite o nome: ");
+        christian.setNome(scanner.nextLine());
+
+        System.out.print("Digite o tipo de pessoa (PessoaFisica/PessoaJuridica): ");
+        christian.setTipoPessoa(TpPessoa.valueOf(scanner.nextLine()));
+
+        System.out.print("Digite o CNPJ: ");
+        christian.setDocumento(scanner.nextLine());
+
+        System.out.print("Digite o endereço: ");
+        christian.setEndereco(scanner.nextLine());
+
+        System.out.print("Digite o complemento do endereço: ");
+        christian.setComplementoEndereco(scanner.nextLine());
+
+        System.out.print("Digite o bairro: ");
+        christian.setBairro(scanner.nextLine());
+
+        System.out.print("Digite o CEP: ");
+        christian.setCEP(scanner.nextLine());
+
+        System.out.print("Digite a cidade: ");
+        christian.setCidade(scanner.nextLine());
+
+        System.out.print("Digite o estado (sigla): ");
+        christian.setEstado(Estado.valueOf(scanner.nextLine()));
+
+        System.out.print("Digite o DDD: (00)");
+        String ddd = scanner.nextLine();
+
+        System.out.print("Digite o telefone: ");
+        String telefone = scanner.nextLine();
+
+        christian.setTelefone(ddd, telefone);
+        christian.setDataAdmissao(LocalDate.now());
+        christian.setDataDesligamento(LocalDate.now());
+
+        System.out.print("Digite o salário: ");
+        christian.setSalarioBruto(scanner.nextDouble());
+
+        System.out.print("Digite o codigo do Setor: ");
+        christian.setCodigoSetor(scanner.nextInt());
+
+        System.out.print("Digite o percentual de imposto: ");
+        christian.setPercentualImpostos(scanner.nextDouble());
+
+        System.out.print("Digite o percentual de imposto: ");
+        christian.setPercentualImpostos(scanner.nextDouble());
+
+        System.out.print("Digite o percentual de imposto: ");
+        christian.setPercentualComissao(scanner.nextDouble());
+
+        System.out.print("Digite o percentual de imposto: ");
+        christian.setValorMinimoGatilho(scanner.nextDouble());
+
+        insereV.cadastrarOperario(christian);
 
     }
 
